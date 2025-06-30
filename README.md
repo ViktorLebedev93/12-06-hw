@@ -73,8 +73,11 @@ exit;
 ```
 
 <img src="img/img2.jpg">
+
 Настройка Slave для подключения к Master:
+
 ```
+
 SET GLOBAL server_id = 2;
 CHANGE MASTER TO
     MASTER_HOST='replication-master',
@@ -84,7 +87,9 @@ CHANGE MASTER TO
 START SLAVE;
 SHOW SLAVE STATUS\G;
 exit;
+
 ```
+
 <img src="img/img3.jpg">
 Таблицы на мастере:
 <img src="img/img4.jpg">
