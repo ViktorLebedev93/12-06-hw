@@ -57,8 +57,11 @@ docker network connect replication replication-master
 docker network connect replication replication-slave
 ```
 <img src="img/img1.jpg">
+
 Настройка мастера
+
 ```
+
 SHOW VARIABLES LIKE 'log_bin';
 SET GLOBAL server_id = 1;
 CREATE USER 'replication'@'%';
@@ -66,7 +69,9 @@ GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
 FLUSH PRIVILEGES;
 SHOW MASTER STATUS;
 exit;
+
 ```
+
 <img src="img/img2.jpg">
 Настройка Slave для подключения к Master:
 ```
