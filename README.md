@@ -48,6 +48,15 @@
 
 ### Решение 2
 
+Создаем контейнеры и сеть между ними
+```
+docker run -d --name replication-master -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.3
+docker run -d --name replication-slave -e MYSQL_ROOT_PASSWORD=123456 -d mysql:8.3
+docker network create replication
+docker network connect replication replication-master
+docker network connect replication replication-slave
+```
+<img src="img/img1.jpg">
 ---
 
 ### Задание 3* 
