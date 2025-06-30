@@ -57,6 +57,34 @@ docker network connect replication replication-master
 docker network connect replication replication-slave
 ```
 <img src="img/img1.jpg">
+Настройка мастера
+```
+SHOW VARIABLES LIKE 'log_bin';
+SET GLOBAL server_id = 1;
+CREATE USER 'replication'@'%';
+GRANT REPLICATION SLAVE ON *.* TO 'replication'@'%';
+FLUSH PRIVILEGES;
+SHOW MASTER STATUS;
+exit;
+```
+<img src="img/img2.jpg">
+Настройка Slave для подключения к Master:
+```
+SET GLOBAL server_id = 2;
+CHANGE MASTER TO
+    MASTER_HOST='replication-master',
+    MASTER_USER='replication',
+    MASTER_LOG_FILE='binlog.000003',
+    MASTER_LOG_POS=781;
+START SLAVE;
+SHOW SLAVE STATUS\G;
+exit;
+```
+<img src="img/img3.jpg">
+Таблицы на мастере:
+<img src="img/img4.jpg">
+Среплицированная таблица на реплике:
+<img src="img/img5.jpg">
 ---
 
 ### Задание 3* 
